@@ -8,10 +8,6 @@
     - name: update apt
       action: command /usr/bin/apt-get update
 
-    # This is necessary due to the box that is being used having an odd sudoers file
-    # - name: update sudoers
-    #  action: copy src=templates/sudoers dest=/etc/sudoers
-
     - name: install db server packages
       action: apt pkg=$item state=present
       with_items:
@@ -23,9 +19,6 @@
 
     - name: install python libraries
       action: easy_install name=psycopg2==2.4.5
-
-    - name: add postgres user to admin group
-      action: user name=postgres groups=admin append=yes
 
     - name: update postgres db configuration
       action: copy src=templates/postgresql.conf dest=/etc/postgresql/9.1/main/postgresql.conf
