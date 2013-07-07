@@ -8,22 +8,23 @@
       - vars.yml
 
   tasks:
+    - command: /bin/false
+      register: result
+      ignore_errors: True
+
+    - name: create supervisor program config
+      action: template src=templates/supervisor.ini dest=/etc/supervisor/${app_name}.ini
+      when: result|failed
+      notify:
+        - restart app
+
     - include: webserver.yml
+      when: result|failed
 
     - name: deploy code from repository
       action: git repo=$repo_url dest=${webapps_dir}/${app_name} remote=$repo_remote version=$repo_version
       notify:
         - restart app
-
-    - name: create supervisor program config
-      action: template src=templates/supervisor.ini dest=/etc/supervisor/${app_name}.ini
-      notify:
-        - restart app
-
-    - name: create nginx site config
-      action: template src=templates/nginx_site.conf dest=/etc/nginx/sites-available/${app_name}.conf
-      notify:
-        - restart nginx
 
     - include: deploy-base.yml
 

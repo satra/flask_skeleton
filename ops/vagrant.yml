@@ -14,3 +14,6 @@
       file: force=yes src=/vagrant path={{ webapps_dir }}/{{ app_name }} state=link
 
     - include: deploy-base.yml
+
+  handlers:
+    - include: handlers.yml

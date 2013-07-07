@@ -4,9 +4,9 @@
 # processname: supervisord
 # pidfile: /var/run/supervisord.pid
 
-PATH=/sbin:/usr/sbin:/bin:/usr/bin
+PATH=/sbin:/usr/sbin:/bin:/usr/bin:/usr/local/bin
 NAME=supervisord
-DESC="supervisod is a system for controlling process state"
+DESC="supervisord is a system for controlling process state"
 SUPERVISORD=/usr/local/bin/supervisord
 SUPERVISORCTL=/usr/local/bin/supervisorctl
 SCRIPTNAME=/etc/init.d/$NAME

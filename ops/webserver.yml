@@ -60,6 +60,11 @@
 - name: ensure log directory
   action: file dest=/var/log/${app_name} state=directory
 
+- name: create nginx site config
+  action: template src=templates/nginx_site.conf dest=/etc/nginx/sites-available/${app_name}.conf
+  notify:
+    - restart nginx
+
 - name: link nginx config
   action: file src=/etc/nginx/sites-available/${app_name}.conf dest=/etc/nginx/sites-enabled/${app_name}.conf state=link
 
