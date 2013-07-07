@@ -1,0 +1,20 @@
+---
+
+- hosts: webservers
+  user: vagrant
+  sudo: True
+
+  vars:
+    app_name: flask_skeleton
+    webapps_dir: /srv
+
+  tasks:
+    - include: webserver.yml
+
+    - name: link /vagrant to {{ webapps_dir }}/{{ app_name}}
+      command: ln -sf /vagrant {{ webapps_dir }}/{{ app_name }}
+
+    - include: deploy-base.yml
+
+  handlers:
+    - include: handlers.yml

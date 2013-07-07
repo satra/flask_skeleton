@@ -1,29 +1,5 @@
-Flask Heroku
-============
-
-<pre><code>
-
-
-             ##
- #########  ###
-  ##     #   ##                     :GG   DG
-  ##         ##                     :EE   EE                        ;E
-  ##         ##                     :EE  KK                         ;E
-  ##         ##                     :EE                             ;E
-  ##   #     ##     ####     ####   :EEEEEEG   KEEEE     WE  WEEE;  ;E   EE EE   EE  
-  ######     ##    ##  #f   #   #   :EE   EE  GEf;tEK  EEKK EEfiEE, ;E  fE  EE   EE  
-  ##   #     ##        #l   ##            EE  KE   tE  EK   E;   EE ;E  E,  EE   EE  
-  ##         ##       ##a    ###          EK  EEEEEEE  EK   E    KE ;EEEE   EE   EE  
-  ##         ##    ##  #s     ###         EK  EE       EK   E    KE ;E EE   EE   EE  
-  ##         ##   ##   #k       ##   E    EE  EE       EK   E,   EK ;E  KE  EE   EE  
-  ##         ##   ##   ##W  #   #:   E    EK  ;EK.,EK  EK   EE,:EE, ;E   ED KE.,EEE  
- #####      #####  ### W#   ####,         EK   ,KEEE   K#    DEEK.  iK   WK  KEEE.   
-
-
-                    github.com/zachwill/flask_heroku
-
-</code></pre>
-
+Flask Skeleton
+===============
 
 What is this?
 -------------
@@ -83,42 +59,6 @@ Now, you can setup an isolated environment with `virtualenv`.
     $ source env/bin/activate
 
 
-Installing Packages
---------------------
-
-### Gevent
-
-To use `gevent`, we'll need to install `libevent` for the
-`gevent` production server. If you're operating on a Linux OS, you can
-`apt-get install libevent-dev`. If you're using Mac OS X, consider
-installing the [homebrew](http://mxcl.github.com/homebrew/) package
-manager, and run the following command:
-
-    $ brew install libevent
-
-If you're using Mac OS X, you can also install `libevent` through [a DMG
-available on Rudix](http://rudix.org/packages-jkl.html#libevent).
-
-
-### Without Gevent
-
-If you'd rather use `gunicorn` without `gevent`, you just need to edit
-the `Procfile` and `requirements.txt`.
-
-First, edit the `Procfile` to look the following:
-
-    web: gunicorn -w 4 -b "0.0.0.0:$PORT" app:app
-
-Second, remove `gevent` from the `requirements.txt` file.
-
-### pip
-
-Then, let's get the requirements installed in your isolated test
-environment.
-
-    $ pip install -r requirements.txt
-
-
 Running Your Application
 ------------------------
 
@@ -131,8 +71,11 @@ You can also specify what port you'd prefer to use.
     $ foreman start -p 5555
 
 
-Deploying
----------
+Deploying to Heroku
+-------------------
+
+Make sure you have the [`heroku`
+Ruby gem](http://devcenter.heroku.com/articles/using-the-cli) installed.
 
 If you haven't [signed up for Heroku](https://api.heroku.com/signup), go
 ahead and do that. You should then be able to [add your SSH key to
@@ -158,11 +101,6 @@ Now, we can view the application in our web browser.
 
     $ heroku open
 
-And, to deactivate `virtualenv` (once you've finished coding), you
-simply run the following command:
-
-    $ deactivate
-
 
 Next Steps
 ----------
@@ -177,29 +115,6 @@ steps you should consider following.
 4. Change the `humans.txt` and `favicon.ico` files in the `static`
    directory.
 5. Change the `apple-touch` icons in the `static` directory.
-
-
-Reactivating the Virtual Environment
-------------------------------------
-
-If you haven't worked with `virtualenv` before, you'll need to
-reactivate the environment everytime you close or reload your terminal.
-
-    $ source env/bin/activate
-
-If you don't reactivate the environment, then you'll probably receive a
-screen full of errors when trying to run the application locally.
-
-
-Adding Requirements
--------------------
-
-In the course of creating your application, you may find yourself
-installing various Python modules with `pip` -- in which case you'll
-need to update the `requirements.txt` file. One way that this can be
-done is with `pip freeze`.
-
-    $ pip freeze > requirements.txt
 
 
 Custom Domains
