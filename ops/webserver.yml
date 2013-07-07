@@ -56,3 +56,12 @@
 
 - name: start supervisord service and have it run during system startup
   action: service name=supervisord state=started enabled=yes
+
+- name: ensure log directory
+  action: file dest=/var/log/${app_name} state=directory
+
+- name: link nginx config
+  action: file src=/etc/nginx/sites-available/${app_name}.conf dest=/etc/nginx/sites-enabled/${app_name}.conf state=link
+
+- name: add/restart app in supervisor
+  action: supervisorctl name=${app_name} state=present

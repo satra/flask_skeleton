@@ -1,0 +1,8 @@
+---
+
+app_name: flask_skeleton
+repo_url: https://github.com/nickhs/flask_skeleton
+repo_remote: origin
+repo_version: master
+webapps_dir: /srv
+webapp_port: 8000

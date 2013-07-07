@@ -4,17 +4,13 @@
   user: vagrant
   sudo: True
 
-  vars:
-    app_name: flask_skeleton
-    webapps_dir: /srv
+  vars_files:
+    - vars.yml
 
   tasks:
     - include: webserver.yml
 
     - name: link /vagrant to {{ webapps_dir }}/{{ app_name}}
-      command: ln -sf /vagrant {{ webapps_dir }}/{{ app_name }}
+      file: force=yes src=/vagrant path={{ webapps_dir }}/{{ app_name }} state=link
 
     - include: deploy-base.yml
-
-  handlers:
-    - include: handlers.yml
