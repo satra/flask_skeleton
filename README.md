@@ -11,21 +11,8 @@ project](http://twitter.github.com/bootstrap/) to help reduce the amount
 of time it's takes you as a developer to go from an idea to a working
 site.
 
-All of the CSS stylesheets are written using the [Less
-CSS](http://lesscss.org/) syntax (even Bootstrap's CSS). If you're using
-Mac OS X for development, make sure to check out [incident57's
-Less.app](http://incident57.com/less/).
-
-Alternatively, there's a [Less binary
-compiler](https://github.com/cloudhead/less.js/) that works similarly on
-the commandline, or you can always use the [`less.js`
-script](https://github.com/cloudhead/less.js/) in your website otherwise
--- it's incredibly fast. For instance, if you visit the [Less CSS
-site](http://lesscss.org), notice that it doesn't link to any CSS files.
-
 Lastly, in Heroku's production environment, your Flask application will
-be served through [`gunicorn`](http://gunicorn.org/) and
-[`gevent`](http://www.gevent.org/).
+be served through [`gunicorn`](http://gunicorn.org/).
 
 
 Why should I use this?
@@ -43,33 +30,61 @@ Instructions
 
 First, you'll need to clone the repo.
 
-    $ git clone git@github.com:zachwill/flask_heroku.git
-    $ cd flask_heroku
+    $ git clone https://github.com/nickhs/flask_skeleton.git
+    $ cd flask_skeleton
 
-Second, let's download `pip`, `virtualenv`, `foreman`, and the [`heroku`
-Ruby gem](http://devcenter.heroku.com/articles/using-the-cli).
+Then you'll need to downloand and install [Vagrant](http://www.vagrantup.com/)
+if you don't have it already. You'll also need [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
+or an alternative Vagrant provider.
 
-    $ sudo easy_install pip
-    $ sudo pip install virtualenv
-    $ sudo gem install foreman heroku
+   http://downloads.vagrantup.com/
 
-Now, you can setup an isolated environment with `virtualenv`.
+Finally let Vagrant do the rest. Don't worry if it seems noisy:
 
-    $ virtualenv --no-site-packages env
-    $ source env/bin/activate
+   $ vagrant up web && vagrant up db
+   $ vagrant ssh web
+   $ cd /srv/flask_skeleton
+   $ python app.py
 
+Visit the site at [192.168.100.10](http://192.168.100.10).
 
-Running Your Application
-------------------------
+Deploying to a box
+-------------------
 
-Now, you can run the application locally.
+Deploying your application to your
+EC2/Linode/DigitalOcean/server somewhere is a cinch.
 
-    $ foreman start
+Add the server in `ops/hosts`, note this is an
+[Ansible hosts file](http://www.ansibleworks.com/docs/patterns.html/#list-of-reserved-inventory-parameters)
+and you can pass the relevant parameters accordingly.
 
-You can also specify what port you'd prefer to use.
+For example your hosts file could look like this:
 
-    $ foreman start -p 5555
+	# Production webservers go here
+	[webservers]
+	web1.server.com ansible_ssh_user=ubuntu ansible_ssh_private_key_file=~/secrets/main.pem
 
+	# Production databases go here
+	# Want just one box? Make them the same
+	[dbservers]
+	db.server.com ansible_ssh_user=ubuntu ansible_ssh_private_key_file=~/secrets/main.pem
+
+	[production:children]
+	dbservers
+	webservers
+
+If you want everything on the same box just enter the hosts twice. Don't want a database? Leave the dbservers
+section blank.
+
+Once you're done defining your hosts do:
+
+    $ ./deploy.sh
+
+Note: ./deploy.sh is idempotent, don't be afraid to run it over and over again.
+
+From then on out to just update the code you can do:
+
+    $ ./deploy.sh --fast
 
 Deploying to Heroku
 -------------------
