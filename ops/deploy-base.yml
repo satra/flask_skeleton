@@ -1,4 +1,0 @@
----
-
-- name: install dependencies
-  action: pip requirements=${webapps_dir}/${app_name}/requirements.txt state=present

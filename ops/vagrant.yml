@@ -13,7 +13,10 @@
     - name: link /vagrant to {{ webapps_dir }}/{{ app_name}}
       file: force=yes src=/vagrant path={{ webapps_dir }}/{{ app_name }} state=link
 
-    - include: deploy-base.yml
+    - name: install dependencies
+      action: pip requirements=${webapps_dir}/${app_name}/requirements.txt state=present
+
+    # TODO: add in starting foreman
 
   handlers:
     - include: handlers.yml

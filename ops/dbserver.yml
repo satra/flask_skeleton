@@ -2,7 +2,6 @@
 
 - hosts: dbservers
   sudo: True
-  user: vagrant
 
   tasks:
     - name: update apt
