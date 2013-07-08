@@ -2,3 +2,4 @@
 
 - include: deploy-webserver.yml
 - include: dbserver.yml
+  when: fast_deploy is not defined

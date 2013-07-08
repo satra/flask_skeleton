@@ -8,12 +8,15 @@
 
   tasks:
     - include: webserver.yml
+      when: fast_deploy is not defined
 
     - name: create supervisor program config
       action: template src=templates/supervisor.ini dest=/etc/supervisor/${app_name}.ini
+      when: fast_deploy is not defined
 
-    - name: add/restart app in supervisor
+    - name: add app in supervisor
       action: supervisorctl name=${app_name} state=present
+      when: fast_deploy is not defined
 
     - name: deploy code from repository
       action: git repo=$repo_url dest=${webapps_dir}/${app_name} remote=$repo_remote version=$repo_version
