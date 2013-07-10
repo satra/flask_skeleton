@@ -8,7 +8,7 @@ Vagrant::Config.run do |config|
     web_config.vm.network :hostonly, "192.168.100.10"
 
     web_config.vm.provision :ansible do |ansible|
-      ansible.playbook = "ops/vagrant.yml"
+      ansible.playbook = "ops/vagrant-webserver.yml"
 	  ansible.inventory_file = "ops/vagrant-hosts"
     end
   end
@@ -21,7 +21,7 @@ Vagrant::Config.run do |config|
     db_config.vm.network :hostonly, "192.168.100.20"
 
     db_config.vm.provision :ansible do |ansible|
-      ansible.playbook = "ops/dbserver.yml"
+      ansible.playbook = "ops/vagrant-dbserver.yml"
 	  ansible.inventory_file = "ops/vagrant-hosts"
     end
   end
