@@ -2,7 +2,7 @@
 # Flask
 # ----------------------
 flask
-
+flask-sqlalchemy
 
 # ----------------------
 # Testing
@@ -13,5 +13,4 @@ mock
 # ----------------------
 # Production Server
 # ----------------------
-gevent
 gunicorn
