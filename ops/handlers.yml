@@ -1,13 +1,13 @@
 ---
 
-- name: restart app
-  action: supervisorctl name=${app_name} state=restarted
+- name: source env variables
+  raw: . /etc/profile
 
 - name: restart nginx
   action: service name=nginx state=restarted
 
-- name: source env variables
-  raw: . /etc/profile
+- name: restart app
+  action: supervisorctl name=${app_name} state=restarted
 
 - name: restart postgresql
   action: service name=postgresql state=restarted
