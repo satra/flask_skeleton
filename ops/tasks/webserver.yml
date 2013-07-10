@@ -1,7 +1,6 @@
 ---
 
-- name: update apt
-  action: command /usr/bin/apt-get update
+- include: common.yml
 
 - name: install python-software-properties
   action: apt pkg=python-software-properties state=present
@@ -13,7 +12,6 @@
   action: apt pkg=$item state=installed
   with_items:
     - build-essential
-    - libpq-dev
     - libmysqlclient-dev
     - libxml2-dev
     - libjpeg62
@@ -22,16 +20,8 @@
     - libfreetype6-dev
     - zlib1g-dev
     - mysql-client
-    - python-dev
-    - python-setuptools
     - python-mysqldb
-    - python-psycopg2
-    - git
     - nginx
-    - libevent-dev
-
-- name: install pip
-  action: easy_install name=pip
 
 - name: install various libraries with pip
   action: pip name=$item state=present

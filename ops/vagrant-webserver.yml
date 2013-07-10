@@ -8,7 +8,7 @@
     - vars.yml
 
   tasks:
-    - include: webserver.yml
+    - include: tasks/webserver.yml
 
     - name: link /vagrant to {{ webapps_dir }}/{{ app_name}}
       file: force=yes src=/vagrant path={{ webapps_dir }}/{{ app_name }} state=link
