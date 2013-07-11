@@ -4,25 +4,24 @@ Flask Skeleton
 What is this?
 -------------
 
-A template to get your [Flask](http://flask.pocoo.org/) app running on
-[Heroku](https://www.heroku.com/) as fast as possible. For added
-convenience, the templates use [Twitter's Bootstrap
+A template to get your [Flask](http://flask.pocoo.org/) app running anywhere as fast as possible.
+For added convenience, the templates use [Twitter's Bootstrap
 project](http://twitter.github.com/bootstrap/) to help reduce the amount
 of time it's takes you as a developer to go from an idea to a working
 site.
 
-Lastly, in Heroku's production environment, your Flask application will
-be served through [`gunicorn`](http://gunicorn.org/).
+Uses [Vagrant](http://www.vagrantup.com/) for development
+so everyone on your team has the exact same environment.
 
+[Ansible](http://www.ansibleworks.com/docs/) to provision
+Vagrant and other environments.
 
-Why should I use this?
-----------------------
+[Flask-SQLAlchemy](http://pythonhosted.org/Flask-SQLAlchemy/)
+is also included to handle all database (PostgresSQL) interactions.
 
-Everything I've learned from writing and maintaining the [Flask
-Engine](https://github.com/zachwill/flask-engine) template for Google
-App Engine has made its way into this repo, too. The goal is to make a
-simple repo that can be cloned and added to for the majority of projects
-going forward, while also staying minimal in size and complexity.
+The skeleton is engineered to run on any Debian/Ubuntu based system,
+while remaining compatible with Heroku. It splits up its web and database
+components allowing you to scale up with ease.
 
 
 Instructions
@@ -41,10 +40,11 @@ or an alternative Vagrant provider.
 
 Finally let Vagrant do the rest. Don't worry if it seems noisy:
 
-   $ vagrant up web && vagrant up db
+   $ vagrant up db
+   $ vagrant up web
    $ vagrant ssh web
    $ cd /srv/flask_skeleton
-   $ python app.py
+   $ python main.py
 
 Visit the site at [192.168.100.10](http://192.168.100.10).
 
@@ -54,7 +54,17 @@ Deploying to a box
 Deploying your application to your
 EC2/Linode/DigitalOcean/server somewhere is a cinch.
 
-Add the server in `ops/hosts`, note this is an
+If you don't already have Ansbile, the provisioning system,
+you'll need to [download it](http://www.ansibleworks.com/docs/gettingstarted.html#getting-ansible).
+
+Your easiest bet is to install it via `pip`:
+
+	$ sudo pip install ansible
+
+Make sure you edit the `ops/vars.yml` file to specify the application name,
+repository location and generate secret keys and database passwords.
+
+Add the server(s) in `ops/hosts`, note this is an
 [Ansible hosts file](http://www.ansibleworks.com/docs/patterns.html/#list-of-reserved-inventory-parameters)
 and you can pass the relevant parameters accordingly.
 
@@ -76,7 +86,7 @@ For example your hosts file could look like this:
 If you want everything on the same box just enter the same host under both sections. Don't want a database? Leave the dbservers
 section blank.
 
-Once you're done defining your hosts doy:
+Once you're done defining your hosts do:
 
     $ ./deploy.sh
 
