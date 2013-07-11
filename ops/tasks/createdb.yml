@@ -1,6 +1,6 @@
 ---
 
-- name: create ${app_name} database user
+- name: create database user
   action: postgresql_user user=${app_name} password=${database_password} state=present
 
 - name: create database

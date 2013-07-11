@@ -15,14 +15,12 @@
     - name: install dependencies
       action: pip requirements=${webapps_dir}/${app_name}/requirements.txt state=present
 
-    - include: tasks/createdb.yml
-
   handlers:
     - include: handlers.yml
 
 - hosts: dbservers
-  user: postgres
   sudo: True
+  sudo_user: postgres
 
   vars_files:
     - vars.yml
