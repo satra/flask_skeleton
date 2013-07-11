@@ -73,14 +73,14 @@ For example your hosts file could look like this:
 	dbservers
 	webservers
 
-If you want everything on the same box just enter the hosts twice. Don't want a database? Leave the dbservers
+If you want everything on the same box just enter the same host under both sections. Don't want a database? Leave the dbservers
 section blank.
 
-Once you're done defining your hosts do:
+Once you're done defining your hosts doy:
 
     $ ./deploy.sh
 
-Note: ./deploy.sh is idempotent, don't be afraid to run it over and over again.
+Note: `./deploy.sh` is idempotent, don't be afraid to run it over and over again.
 
 From then on out to just update the code you can do:
 
