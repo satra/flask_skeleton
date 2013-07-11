@@ -40,11 +40,11 @@ or an alternative Vagrant provider.
 
 Finally let Vagrant do the rest. Don't worry if it seems noisy:
 
-   $ vagrant up db
-   $ vagrant up web
-   $ vagrant ssh web
-   $ cd /srv/flask_skeleton
-   $ python main.py
+	$ vagrant up db
+	$ vagrant up web
+	$ vagrant ssh web
+	$ cd /srv/flask_skeleton
+	$ python main.py
 
 Visit the site at [192.168.100.10](http://192.168.100.10).
 
