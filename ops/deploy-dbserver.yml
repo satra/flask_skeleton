@@ -8,6 +8,7 @@
 
   tasks:
     - include: tasks/dbserver.yml
+      when: fast_deploy is not defined
 
     - name: deploy code from repository
       action: git repo=$repo_url dest=${webapps_dir}/${app_name} remote=$repo_remote version=$repo_version
@@ -27,6 +28,7 @@
 
   tasks:
     - include: tasks/createdb.yml
+      when: fast_deploy is not defined
 
   handlers:
     - include: handlers.yml
