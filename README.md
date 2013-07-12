@@ -23,6 +23,24 @@ The skeleton is engineered to run on any Debian/Ubuntu based system,
 while remaining compatible with Heroku. It splits up its web and database
 components allowing you to scale up with ease.
 
+Really Quick Start
+-------------------
+
+Get a development environment running:
+
+	$ vagrant up web
+	$ vagrant ssh
+	$ cd /srv/flask_skeleton && python.main.py
+	Open http://192.168.100.10
+
+Put it in production:
+
+	Edit ops/vars.yml
+	Edit ops/hosts
+	$ ./deploy.sh
+
+Or deploy to Heroku as you normally would.
+
 
 Instructions
 ------------
@@ -142,7 +160,7 @@ steps you should consider following.
 5. Change the `apple-touch` icons in the `static` directory.
 
 
-Custom Domains
+Heroku Custom Domains
 --------------
 
 If your account is verified -- and your credit card is on file -- you
