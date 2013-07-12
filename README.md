@@ -1,6 +1,8 @@
 Flask Skeleton
 ===============
 
+You make lots of simple Flask CRUD apps. You want deployment to be super easy.
+
 What is this?
 -------------
 
@@ -179,3 +181,32 @@ Lastly, add the following A records to your DNS management tool.
     75.101.163.44
     75.101.145.87
     174.129.212.2
+
+Shout Outs
+-----------
+
+Based on the amazing work of both https://github.com/zachwill/flask_heroku
+and https://github.com/mattupstate/vagrant-ansible-tutorial
+
+LICENSE
+---------
+
+The MIT License
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
