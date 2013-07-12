@@ -34,3 +34,4 @@ pip-log.txt
 *.rbc
 
 .vagrant
+ops/hosts
