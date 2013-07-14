@@ -28,11 +28,13 @@ components allowing you to scale up with ease.
 Really Quick Start
 -------------------
 
+Make sure you have Vagrant and Ansible installed.
+
 Get a development environment running:
 
 	$ vagrant up web
 	$ vagrant ssh
-	$ cd /srv/flask_skeleton && python.main.py
+	$ cd /srv/flask_skeleton && python main.py
 	Open http://192.168.100.10
 
 Put it in production:
@@ -57,6 +59,15 @@ if you don't have it already. You'll also need [VirtualBox](https://www.virtualb
 or an alternative Vagrant provider.
 
    http://downloads.vagrantup.com/
+
+You'll also need to have [Ansbile](http://www.ansibleworks.com/docs/gettingstarted.html)
+(the provisioning mechanism) installed. The easiest method is to do:
+
+	$ sudo pip install ansible
+
+Don't have pip? You can grab it with:
+
+	$ sudo easy_install pip
 
 Finally let Vagrant do the rest. Don't worry if it seems noisy:
 
