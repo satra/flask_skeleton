@@ -23,11 +23,11 @@
     - python-mysqldb
     - nginx
 
-- name: install various libraries with pip
-  action: pip name=$item state=present
-  with_items:
-    - supervisor
-    - gunicorn
+- name: install gunicorn with pip
+  action: pip name=gunicorn state=present
+
+- name: install supervisor with pip
+  action: pip name=supervisor version=3.0b2 state=present
 
 - name: remove default nginx site
   action: file path=/etc/nginx/sites-enabled/default state=absent
