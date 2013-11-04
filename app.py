@@ -21,5 +21,5 @@ if app.config['SQLALCHEMY_DATABASE_URI']:
 
 config = app.config
 
-app.jobs = []
+app.jobs = {}
 
