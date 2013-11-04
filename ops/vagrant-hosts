@@ -4,6 +4,11 @@
 [dbservers]
 192.168.100.20
 
+[virtuososervers]
+192.168.100.30
+
 [vagrant:children]
 webservers
 dbservers
+virtuososervers
+

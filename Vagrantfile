@@ -44,4 +44,37 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 	  ansible.inventory_path = "ops/vagrant-hosts"
     end
   end
+
+  config.vm.define :virtuoso do |virt_config|
+
+    virt_config.vm.box = "precise64_base"
+    virt_config.vm.box_url = "http://files.vagrantup.com/precise64.box"
+    virt_config.vm.network :forwarded_port, guest: 8890, host: 8890
+    virt_config.vm.network :public_network, :bridge => 'en0: Wi-Fi (AirPort)'
+    virt_config.vm.network :private_network, ip: "192.168.100.30"
+
+    virt_config.vm.provider :virtualbox do |vb|
+
+    #   # Don't boot with headless mode
+    #   vb.gui = true
+    #
+    #   # Use VBoxManage to customize the VM. For example to change memory:
+    
+     vb.customize ["modifyvm", :id, "--cpuexecutioncap", "50"]
+     vb.customize ["modifyvm", :id, "--ioapic", "on"]
+     vb.customize ["modifyvm", :id, "--memory", "2048"]
+     vb.customize ["modifyvm", :id, "--cpus", "2"]
+    end
+
+    virt_config.vm.provision :ansible do |ansible|
+      ansible.verbose = 'vvv'
+      ansible.playbook = "ops/vagrant-virtserver.yml"
+      ansible.inventory_path = "ops/vagrant-hosts"
+    end
+
+
+
+  end
+
+
 end
