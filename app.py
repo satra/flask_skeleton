@@ -20,3 +20,6 @@ if app.config['SQLALCHEMY_DATABASE_URI']:
     db = SQLAlchemy(app)
 
 config = app.config
+
+app.jobs = {}
+
